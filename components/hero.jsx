@@ -8,7 +8,7 @@ export default function Hero() {
   const [displayText, setDisplayText] = useState("")
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isDeleting, setIsDeleting] = useState(false)
-  const roles = ["Student", "Developer", "Java Expert", "React Enthusiast"]
+  const roles = ["Student", "Developer", "Java Developer", "React Enthusiast"]
   const typingSpeed = 150
   const deletingSpeed = 100
   const delayBetweenWords = 2000
@@ -56,21 +56,41 @@ export default function Hero() {
   }, [displayText, currentIndex, isDeleting, roles])
 
   const handleSmoothScroll = (e, id) => {
-    e.preventDefault()
-    const element = document.querySelector(id)
+    e.preventDefault();
+    const element = document.querySelector(id);
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
-      // Update URL without page reload
-      window.history.pushState(null, "", id)
+      // For projects section, align section title to top of viewport
+      if (id === '#projects') {
+        const sectionTop = element.offsetTop;
+        const headerHeight = 64; // Adjust this to match your header height
+        window.scrollTo({
+          top: sectionTop - headerHeight,
+          behavior: 'smooth'
+        });
+      } else {
+        // Default smooth scroll for other sections
+        const headerOffset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+      
+      // Update URL without reloading page
+      window.history.pushState(null, "", id);
     }
-  }
+  };
+  
 
   return (
-    <section id="home" className="container py-24 md:py-32 space-y-8">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <div className="space-y-6 animate-fade-in">
+    <section id="home" className="container pt-4 pb-12 md:pt-8 md:pb-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-5rem)]">
+        <div className="space-y-6 animate-fade-in -mt-8">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
-            Hi, I'm <span className="text-primary">John Doe</span>
+            Hi, I'm <span className="text-primary">Md Samim Reza</span>
           </h1>
           <h2 className="text-2xl sm:text-3xl font-semibold flex items-center">
             I am a{" "}
@@ -82,7 +102,7 @@ export default function Hero() {
             </span>
           </h2>
           <p className="text-muted-foreground text-lg">
-            A passionate third-year college student specializing in Java, React, and JavaScript development. I build
+            A passionate third-year college student specializing in Java, Srping Boot, React, and JavaScript development. I build
             modern web applications with a focus on clean code and user experience.
           </p>
           <div className="flex flex-wrap gap-4">
@@ -105,9 +125,9 @@ export default function Hero() {
         </div>
         <div className="flex justify-center">
           <div className="relative w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-primary transition-transform hover:scale-105">
-            <Image
-              src="/placeholder.svg?height=320&width=320"
-              alt="Developer Portrait"
+          <Image
+              src="/profile.jpg"
+              alt="Your Name"
               fill
               className="object-cover"
               priority
