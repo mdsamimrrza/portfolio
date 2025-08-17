@@ -31,7 +31,7 @@ export default function Skills() {
     {
       name: "Design",
       icon: <PenTool className="h-8 w-8 text-primary" />,
-      skills: ["Figma", "Adobe XD", "UI/UX Principles"],
+      skills: ["Figma", "UI/UX Principles"],
     },
   ]
 

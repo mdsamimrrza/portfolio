@@ -6,38 +6,29 @@ export default function Experience() {
   const experiences = [
     {
       title: "Software Developer Intern",
-      company: "Tech Solutions Inc.",
-      period: "May 2023 - August 2023",
+      company: "Grab (Japan)",
+      period: "Oct 2023 – Nov 2023",
       description:
-        "Developed and maintained web applications using React and Java Spring Boot. Collaborated with senior developers to implement new features and fix bugs.",
+        "Worked on backend services and internal tools to improve operational efficiency. Collaborated with senior developers to optimize APIs and enhance system performance.",
       type: "work",
-      skills: ["React", "Java", "Spring Boot", "Git"],
+      skills: ["Java", "Spring Boot", "REST APIs", "MySQL"],
     },
     {
-      title: "Frontend Developer (Part-time)",
-      company: "Digital Creations",
-      period: "January 2023 - Present",
+      title: "Bachelor of Engineering in Computer Science",
+      company: "Siddaganga Institute of Technology",
+      period: "2022 – 2026 ",
       description:
-        "Working on responsive web applications for various clients. Implementing UI designs and integrating with backend APIs.",
-      type: "work",
-      skills: ["JavaScript", "React", "CSS", "RESTful APIs"],
+        "Coursework includes Data Structures, Algorithms, Database Systems, and Web Development.",
+      type: "education",
+      skills: ["Java", "DSA", "Database Systems", "Spring Boot"],
     },
     {
-      title: "Bachelor of Science in Computer Science",
-      company: "University of Technology",
-      period: "September 2021 - Present (Expected graduation: 2025)",
-      description:
-        "Focusing on software engineering, web development, and database systems. Maintaining a GPA of 3.8/4.0.",
+      title: "Higher Secondary Education (12th)",
+      company: "Nepal",
+      period: "Completed 2022",
+      description: "Focused on Mathematics, Physics, and Computer Science.",
       type: "education",
-      skills: ["Data Structures", "Algorithms", "Database Systems", "Web Development"],
-    },
-    {
-      title: "Web Development Bootcamp",
-      company: "Code Academy",
-      period: "Summer 2021",
-      description: "Intensive 12-week program covering full-stack web development fundamentals.",
-      type: "education",
-      skills: ["HTML/CSS", "JavaScript", "Node.js", "MongoDB"],
+      skills: ["Mathematics", "Physics", "Computer Science"],
     },
   ]
 
@@ -84,4 +75,3 @@ export default function Experience() {
     </section>
   )
 }
-
