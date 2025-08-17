@@ -121,6 +121,13 @@ export default function Hero() {
             >
               Contact Me
             </Button>
+            <a
+              href="/resume.pdf"
+              download="Samim_Reza_Resume"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 py-2"
+            >
+              Resume
+            </a>
           </div>
         </div>
         <div className="flex justify-center">

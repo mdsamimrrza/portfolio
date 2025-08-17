@@ -58,9 +58,9 @@ export default function Header() {
     <header className={`sticky top-0 z-40 w-full border-b transition-all duration-300 ${mobileMenuOpen ? 'bg-background/80 backdrop-blur-lg' : 'bg-background/95 backdrop-blur'}`}>
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center">
-          <Link href="#home" className="font-bold text-xl" onClick={(e) => handleNavClick(e, "#home")}>
-            DevPortfolio
-          </Link>
+        <Link href="#home" className="font-bold text-xl" onClick={(e) => handleNavClick(e, "#home")}>
+          <span className="text-primary">REZA</span>Dev
+        </Link>
         </div>
 
         {/* Desktop Navigation */}
