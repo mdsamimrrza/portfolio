@@ -23,7 +23,7 @@ function validateFormData({ name, email, subject, message }) {
 export async function POST(request) {
   try {
     const formData = await request.json();
-    const { name, email, subject, message } = formData;
+    const { name, email, phone, subject, message } = formData;
 
     // Validate form data
     validateFormData(formData);
@@ -57,6 +57,7 @@ export async function POST(request) {
       text: `
         Name: ${name}
         Email: ${email}
+        Phone: ${phone || 'Not provided'}
         
         Message:
         ${message}
@@ -65,6 +66,7 @@ export async function POST(request) {
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+        <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
         <p><strong>Subject:</strong> ${subject}</p>
         <h3>Message:</h3>
         <p>${message.replace(/\n/g, '<br>')}</p>
