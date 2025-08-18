@@ -106,7 +106,3 @@ This project is open source and available under the [MIT License](LICENSE).
 - Icons by [Lucide](https://lucide.dev/)
 - UI Components from [shadcn/ui](https://ui.shadcn.com/)
 
-## 📬 Contact
-Your Name - [@your-twitter](https://twitter.com/your-twitter) - your.email@example.com
-
-Project Link: [https://github.com/your-username/portfolio-website](https://github.com/your-username/portfolio-website)
