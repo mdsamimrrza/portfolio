@@ -86,24 +86,23 @@ export default function Hero() {
   
 
   return (
-    <section id="home" className="container pt-4 pb-12 md:pt-8 md:pb-16">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-5rem)]">
-        <div className="space-y-6 animate-fade-in -mt-8">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold">
+    <section id="home" className="container pt-2 pb-8 md:pt-8 md:pb-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center min-h-[calc(100vh-5rem)]">
+        <div className="space-y-4 md:space-y-6 animate-fade-in -mt-4 md:-mt-8">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold">
             Hi, I'm <span className="text-primary">Md Samim Reza</span>
           </h1>
-          <h2 className="text-2xl sm:text-3xl font-semibold flex items-center">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold flex flex-wrap items-center gap-1">
             I am a{" "}
-            <span className="text-primary ml-2 min-w-[180px] inline-flex">
+            <span className="text-primary min-w-[150px] md:min-w-[180px] inline-flex">
               {displayText}
               <span ref={cursorRef} className="ml-1 animate-pulse">
                 |
               </span>
             </span>
           </h2>
-          <p className="text-muted-foreground text-lg">
-            A passionate third-year college student specializing in Java, Srping Boot, React, and JavaScript development. I build
-            modern web applications with a focus on clean code and user experience.
+          <p className="text-muted-foreground text-base md:text-lg">
+            A passionate third-year college student specializing in Java, Spring Boot, React, and JavaScript development. I build modern web applications with a focus on clean code and user experience.
           </p>
           <div className="flex flex-wrap gap-4">
             <Button

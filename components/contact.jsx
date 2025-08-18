@@ -11,6 +11,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: "",
   })
@@ -51,6 +52,7 @@ export default function Contact() {
       setFormData({
         name: "",
         email: "",
+        phone: "",
         subject: "",
         message: "",
       })
@@ -150,20 +152,35 @@ export default function Contact() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium">
-                      Email
+                    <label htmlFor="phone" className="text-sm font-medium">
+                      Phone
                     </label>
                     <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
                       onChange={handleChange}
-                      placeholder="Your email"
-                      required
+                      placeholder="Your phone number"
                       className="transition-colors focus:border-primary"
                     />
                   </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-medium">
+                    Email
+                  </label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Your email"
+                    required
+                    className="transition-colors focus:border-primary w-full"
+                  />
                 </div>
 
                 <div className="space-y-2">
