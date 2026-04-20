@@ -1,7 +1,7 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Github, ExternalLink } from "lucide-react"
+import { GitBranch, ExternalLink } from "lucide-react"
 import Image from "next/image"
 
 export default function Projects() {
@@ -68,7 +68,7 @@ export default function Projects() {
             <CardFooter className="flex gap-2">
               <Button asChild variant="outline" size="sm" className="transition-colors hover:bg-primary/10">
                 <a href={project.github} target="_blank" rel="noopener noreferrer">
-                  <Github className="mr-2 h-4 w-4" />
+                  <GitBranch className="mr-2 h-4 w-4" />
                   Code
                 </a>
               </Button>
