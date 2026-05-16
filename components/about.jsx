@@ -47,8 +47,8 @@ export default function About() {
                 Bangalore, Karnataka — Remote
               </div>
               <p className="text-foreground leading-relaxed">
-                I'm <span className="font-semibold text-primary">Md Samim Reza</span>, a third-year B.E. Computer Science
-                student at Siddaganga Institute of Technology and a full-time{" "}
+                I'm <span className="font-semibold text-primary">Md Samim Reza</span>, a Computer Science graduate from
+                Siddaganga Institute of Technology and an intern{" "}
                 <span className="font-semibold">Superintelligent Evangelist</span> at{" "}
                 <span className="font-semibold text-primary">Chiac ASI</span>.
               </p>
@@ -61,7 +61,7 @@ export default function About() {
                 and sharpening my skills in DSA and system design.
               </p>
               <div className="flex flex-wrap gap-2 pt-1">
-                {["Open to Work", "Remote", "Full-Time"].map(tag => (
+                {["Open to Work", "Remote", "Intern"].map(tag => (
                   <span key={tag}
                     className="px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium border border-primary/20">
                     {tag}

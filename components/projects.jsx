@@ -11,12 +11,13 @@ const GithubIcon = ({ className }) => (
 
 const PROJECTS = [
   {
-    featured: true,
-    title: "PIMS — Patient Information Management System",
+    featured: false,
+    title: "PIMS — Pharmacy Information Management System",
     desc: "A comprehensive hospital management system built for real-world clinical workflows. Features patient registration, appointment scheduling, prescription management, role-based access (Doctor, Admin, Patient), and automated email notifications.",
     tags: ["Java", "Spring Boot", "MySQL", "React", "REST APIs", "Nodemailer"],
     github: "https://github.com/mdsamimrrza/PIMS",
     demo: "https://pims-sys.vercel.app/",
+    image: "/pims.png",
   },
   {
     featured: false,
@@ -25,6 +26,7 @@ const PROJECTS = [
     tags: ["React", "JavaScript", "Firebase", "REST APIs"],
     github: "https://github.com/mdsamimrrza/Knowledge-Vault",
     demo: "https://knowledge-vault.up.railway.app/",
+    image: "/knowledge.png",
   },
   {
     featured: false,
@@ -33,6 +35,7 @@ const PROJECTS = [
     tags: ["JavaScript", "Node.js", "Express.js", "MongoDB"],
     github: "https://github.com/mdsamimrrza/knowledgeBase",
     demo: "https://knowledgebase-wdt5.onrender.com/",
+    image: "/query.png",
   },
   {
     featured: false,
@@ -41,6 +44,7 @@ const PROJECTS = [
     tags: ["React", "HTML/CSS", "JavaScript", "html2canvas"],
     github: "https://github.com/mdsamimrrza/vishaltailor",
     demo: "https://newvishaltailor.vercel.app/",
+    image: "/vishaltailor.png",
   },
 ]
 
@@ -59,74 +63,41 @@ export default function Projects() {
         </div>
       </Reveal>
 
-      {/* Featured project */}
-      {PROJECTS.filter(p => p.featured).map(project => (
-        <Reveal key={project.title} delay={100}>
-          <div className="p-6 md:p-8 border border-primary/20 relative overflow-hidden group rounded-xl bg-white/90 dark:bg-card/30 hover:bg-primary/5 hover:border-primary hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 shadow-sm dark:shadow-none">
-            <div className="pointer-events-none absolute -top-16 -right-16 w-48 h-48 rounded-full bg-primary/8 blur-2xl" />
-            <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
-              <div className="flex items-center gap-2">
-                <span className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-full">
-                  <Star className="h-3 w-3 fill-primary" /> Featured
-                </span>
-              </div>
-              <div className="flex gap-2">
-                <Button variant="outline" size="sm" asChild className="gap-1.5">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                    <GithubIcon className="h-3.5 w-3.5" /> Code
-                  </a>
-                </Button>
-                {project.demo && (
-                  <Button size="sm" asChild className="gap-1.5">
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-3.5 w-3.5" /> Demo
-                    </a>
-                  </Button>
-                )}
-              </div>
-            </div>
-            <h3 className="text-xl md:text-2xl font-bold mb-3">{project.title}</h3>
-            <p className="text-muted-foreground leading-relaxed mb-5 max-w-3xl">{project.desc}</p>
-            <div className="flex flex-wrap gap-2">
-              {project.tags.map(tag => (
-                <Badge key={tag} variant="secondary"
-                  className="bg-primary/8 text-primary border border-primary/15 hover:bg-primary/15 transition-colors">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-      ))}
-
-      {/* Other projects grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {PROJECTS.filter(p => !p.featured).map((project, i) => (
+      {/* Projects grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        {PROJECTS.map((project, i) => (
           <Reveal key={project.title} delay={i * 100}>
-            <div className="p-5 flex flex-col gap-4 group border border-border/50 bg-white/90 dark:bg-card/30 rounded-xl hover:bg-primary/5 hover:border-primary hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 h-full shadow-sm dark:shadow-none">
-              <h3 className="text-base font-bold leading-snug">{project.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed flex-grow">{project.desc}</p>
-              <div className="flex flex-wrap gap-1.5">
-                {project.tags.map(tag => (
-                  <span key={tag}
-                    className="px-2 py-0.5 rounded-full bg-primary/8 text-primary text-xs border border-primary/15 hover:bg-primary/15 transition-colors">
-                    {tag}
-                  </span>
-                ))}
+            <div className="flex flex-col group border border-border/50 bg-white/90 dark:bg-card/30 rounded-xl hover:bg-primary/5 hover:border-primary hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 h-full shadow-sm dark:shadow-none overflow-hidden">
+              <div className="relative h-48 w-full bg-muted border-b border-border/50">
+                <img src={project.image} alt={project.title} className="object-cover object-top w-full h-full" />
               </div>
-              <div className="flex gap-2 pt-1">
-                <Button variant="outline" size="sm" asChild className="flex-1 gap-1.5">
-                  <a href={project.github} target="_blank" rel="noopener noreferrer">
-                    <GithubIcon className="h-3.5 w-3.5" /> Code
-                  </a>
-                </Button>
-                {project.demo && (
-                  <Button size="sm" asChild className="flex-1 gap-1.5">
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-3.5 w-3.5" /> Demo
+              <div className="p-5 flex flex-col gap-4 flex-grow justify-between">
+                <div>
+                  <h3 className="text-base font-bold leading-snug mb-2">{project.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-3">{project.desc}</p>
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {project.tags.map(tag => (
+                      <span key={tag}
+                        className="px-2 py-0.5 rounded-full bg-primary/8 text-primary text-xs border border-primary/15 hover:bg-primary/15 transition-colors">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex gap-2 pt-1">
+                  <Button variant="outline" size="sm" asChild className="flex-1 gap-1.5">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer">
+                      <GithubIcon className="h-3.5 w-3.5" /> Code
                     </a>
                   </Button>
-                )}
+                  {project.demo && (
+                    <Button size="sm" asChild className="flex-1 gap-1.5">
+                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink className="h-3.5 w-3.5" /> Demo
+                      </a>
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
           </Reveal>

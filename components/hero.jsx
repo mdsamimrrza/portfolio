@@ -106,7 +106,7 @@ export default function Hero() {
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-2">Hello, I'm</p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1]">
-                <span className="gradient-text">Md Samim</span>
+                <span className="text-primary">Md Samim</span>
                 <br />
                 <span className="text-foreground">Reza</span>
               </h1>
@@ -123,10 +123,10 @@ export default function Hero() {
 
             {/* Bio */}
             <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-lg">
-              <span className="text-foreground font-medium">Superintelligent Evangelist</span> at{" "}
-              <span className="text-primary font-medium">Chiac ASI</span> — building AI-driven query systems
-              and search agents. B.E. Computer Science student at{" "}
-              <span className="text-foreground font-medium">SIT, Bangalore</span>, graduating 2026.
+              <span className="text-foreground font-medium">Intern Superintelligent Evangelist</span> at{" "}
+              <span className="text-primary font-medium">Chiac ASI</span> — building AI-driven query systems.
+              Computer Science graduate from{" "}
+              <span className="text-foreground font-medium">SIT, Bangalore</span>.
             </p>
 
             {/* CTA buttons */}

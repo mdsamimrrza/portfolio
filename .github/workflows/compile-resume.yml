@@ -1,0 +1,35 @@
+name: Compile LaTeX Resume
+
+on:
+  push:
+    paths:
+      - 'resume/**' # Only run when the LaTeX files are changed
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # Required to commit the new PDF
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: resume.tex
+          working_directory: resume
+          # Automatically handles pdflatex and typical dependencies
+
+      - name: Move PDF to public folder
+        run: |
+          mkdir -p public
+          # Your website links to /Md_Samim_Reza.pdf, so we rename it here
+          mv resume/resume.pdf public/Md_Samim_Reza.pdf
+
+      - name: Commit and Push the PDF
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Auto-compiled resume PDF [skip ci]"
+          file_pattern: 'public/Md_Samim_Reza.pdf'

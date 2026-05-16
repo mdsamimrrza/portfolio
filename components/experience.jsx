@@ -62,7 +62,7 @@ export default function Experience() {
       <div className="max-w-3xl mx-auto space-y-0">
         {ITEMS.map((item, i) => (
           <Reveal key={item.title} delay={i * 150}>
-            <div className="relative pl-10 pb-14 last:pb-0">
+            <div className="relative pl-10 pb-36 last:pb-0">
 
               {/* Timeline line */}
               {i < ITEMS.length - 1 && (

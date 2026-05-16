@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, Moon, Sun, X } from "lucide-react"
+import { Menu, Moon, Sun, X, Home, Folder, Zap, Briefcase, Mail } from "lucide-react"
 import { portfolioContent } from "@/lib/portfolio-content"
 import { useTheme } from "@/components/theme-provider"
 import { Button } from "@/components/ui/button"
@@ -61,7 +61,7 @@ export default function Header() {
     }
 
     if (href.startsWith("/#")) {
-      return pathname === "/"
+      return false
     }
 
     return pathname === href
@@ -69,11 +69,15 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 w-full border-b transition-all duration-300 ${mobileMenuOpen ? "bg-background/80 backdrop-blur-lg" : "bg-background/95 backdrop-blur"
-        }`}
+      className={`sticky top-0 z-40 w-full border-b transition-all duration-300 bg-background/50 backdrop-blur-3xl`}
     >
       <div className="container flex h-20 items-center justify-between">
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
+          {/* Mobile Menu Trigger on Left */}
+          <Button variant="ghost" size="icon" onClick={toggleMobileMenu} aria-label="Toggle menu" className="md:hidden">
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
+
           <Link href="/" className="flex flex-col leading-none" onClick={() => setMobileMenuOpen(false)}>
             <span className="text-xl font-bold">
               <span className="text-primary">{brand.logoText.replace("Dev", "")}</span>Dev
@@ -105,27 +109,44 @@ export default function Header() {
           <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
             {mounted && theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
-          <Button variant="ghost" size="icon" onClick={toggleMobileMenu} aria-label="Toggle menu">
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
         </div>
       </div>
 
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-20 z-50 bg-background/80 backdrop-blur-lg md:hidden">
+        <div 
+          className="fixed inset-0 top-20 z-50 bg-black/40 backdrop-blur-md md:hidden"
+          onClick={() => setMobileMenuOpen(false)}
+        >
           <div className="h-[calc(100vh-5rem)] overflow-y-auto">
-            <nav className="mx-auto flex w-full max-w-md flex-col gap-4 rounded-b-[1.75rem] border border-border/70 bg-background/95 px-4 py-6 shadow-[0_30px_80px_-50px_rgba(15,23,42,0.45)]">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`w-full rounded-2xl px-4 py-3 text-lg font-medium transition-colors ${isActive(item.href) ? "bg-primary/12 text-primary hover:bg-primary hover:text-primary-foreground" : "text-foreground/80 hover:bg-primary hover:text-primary-foreground"
-                    }`}
-                  onClick={(event) => handleNavClick(event, item.href)}
-                >
-                  {item.name}
-                </Link>
-              ))}
+            <nav 
+              className="flex w-[75%] h-full flex-col gap-4 rounded-r-2xl border-r border-border/50 bg-white/80 dark:bg-card/80 px-4 py-6 shadow-[0_30px_80px_-50px_rgba(0,0,0,0.5)] backdrop-blur-xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="mb-2 px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">
+                Navigation
+              </div>
+              {navigation.map((item) => {
+                const Icon = {
+                  Home: Home,
+                  Projects: Folder,
+                  Skills: Zap,
+                  Experience: Briefcase,
+                  Contact: Mail
+                }[item.name] || Folder;
+                
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className={`w-full rounded-xl px-4 py-3 text-base font-medium transition-all duration-300 flex items-center gap-3 ${isActive(item.href) ? "bg-primary/15 text-primary" : "text-foreground/80 hover:bg-white/5 hover:text-primary"
+                      }`}
+                    onClick={(event) => handleNavClick(event, item.href)}
+                  >
+                    <Icon className="h-5 w-5" />
+                    <span>{item.name}</span>
+                  </Link>
+                )
+              })}
             </nav>
           </div>
         </div>
