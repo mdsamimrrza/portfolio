@@ -50,12 +50,22 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="space-y-3">
-            <p className="font-bold text-xl">
-              <span className="gradient-text">Samim</span>
-              <span className="text-foreground">.dev</span>
-            </p>
+            <a
+              href="#home"
+              className="inline-block font-bold text-xl transition-opacity hover:opacity-90 cursor-pointer"
+              onClick={(e) => {
+                const el = document.getElementById("home")
+                if (el) {
+                  e.preventDefault()
+                  window.scrollTo({ top: 0, behavior: "smooth" })
+                  window.history.pushState(null, "", "/")
+                }
+              }}
+            >
+              <span className="text-primary font-extrabold">Md Samim</span> <span className="text-foreground">Reza</span>
+            </a>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              Full Stack Developer & AI Systems Builder. Currently working at Chiac ASI, Bangalore.
+              Associate Software Engineer at Canada Life, building reliable backend systems, full-stack products, and AI workflows.
             </p>
             <div className="flex gap-3 pt-1">
               {SOCIAL.map(({ label, href, svg }) => (

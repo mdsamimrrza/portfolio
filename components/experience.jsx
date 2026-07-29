@@ -5,15 +5,28 @@ import Reveal from "./reveal"
 const ITEMS = [
   {
     type: "work",
-    title: "Superintelligent Evangelist",
-    org: "Chiac ASI",
-    period: "Feb 2026 – Present",
-    location: "Sheffield, UK · Remote",
+    title: "Associate Software Engineer",
+    org: "Canada Life",
+    period: "Jul 2026 - Present",
+    location: "Bangalore, Karnataka - Hybrid",
     current: true,
     bullets: [
-      "Building AI-driven query processing systems and intelligent article retrieval agents using advanced AI models.",
-      "Acting as facilitator — coordinating development workflows and ensuring smooth cross-team collaboration.",
-      "Gaining hands-on experience in backend development, API integration, and responsible AI (AI alignment).",
+      "Joined Canada Life as a full-time Associate Software Engineer in a hybrid role.",
+      "Building production software with a focus on reliable engineering, collaboration, and maintainable systems.",
+    ],
+    skills: ["Software Engineering", "Backend Development", "Production Systems", "Collaboration"],
+  },
+  {
+    type: "work",
+    title: "Superintelligent Evangelist",
+    org: "Chiac ASI",
+    period: "Feb 2026 - May 2026",
+    location: "Sheffield, UK - Remote",
+    current: false,
+    bullets: [
+      "Built AI-driven query processing systems and intelligent article retrieval agents using advanced AI models.",
+      "Acted as facilitator, coordinating development workflows and supporting smooth cross-team collaboration.",
+      "Gained hands-on experience in backend development, API integration, and responsible AI.",
     ],
     skills: ["AI", "Team Leadership", "Backend Development", "API Integration", "AI Alignment"],
   },
@@ -21,8 +34,8 @@ const ITEMS = [
     type: "work",
     title: "Student Intern",
     org: "Japan Grab Technologies",
-    period: "Oct 2023 · 1 month",
-    location: "Bangalore · Hybrid",
+    period: "Oct 2023 - 1 month",
+    location: "Bangalore - Hybrid",
     current: false,
     bullets: [
       "Gained real-world software industry exposure through an intensive short-term internship.",
@@ -32,13 +45,13 @@ const ITEMS = [
   },
   {
     type: "education",
-    title: "Bachelor of Engineering — Computer Science",
+    title: "Bachelor of Engineering - Computer Science",
     org: "Siddaganga Institute of Technology",
-    period: "Nov 2022 – Aug 2026",
+    period: "Nov 2022 - May 2026",
     location: "Bangalore, Karnataka",
-    current: true,
+    current: false,
     bullets: [
-      "Specialization in Web Development and Computer Science fundamentals.",
+      "Completed Computer Science and Engineering studies in May 2026.",
       "Coursework: Data Structures & Algorithms, Database Systems, Operating Systems, Web Development, Computer Networks.",
     ],
     skills: ["Java", "DSA", "Database Systems", "Web Development"],
@@ -47,22 +60,22 @@ const ITEMS = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="container py-16 scroll-mt-2 space-y-10">
+    <section id="experience" className="container scroll-mt-2 py-20 space-y-10">
 
       <Reveal>
         <div className="text-center space-y-3">
           <p className="section-heading-kicker">Journey</p>
-          <h2 className="text-3xl md:text-4xl font-bold">Experience & Education</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Experience & Education</h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            My professional path from classroom to AI company — building real things at every step.
+            My professional path from classroom to AI work to full-time software engineering - building real things at every step.
           </p>
         </div>
       </Reveal>
 
-      <div className="max-w-3xl mx-auto space-y-0">
+      <div className="max-w-4xl mx-auto space-y-8 md:space-y-10">
         {ITEMS.map((item, i) => (
           <Reveal key={item.title} delay={i * 150}>
-            <div className="relative pl-10 pb-36 last:pb-0">
+            <div className="relative pl-10">
 
               {/* Timeline line */}
               {i < ITEMS.length - 1 && (
@@ -78,7 +91,7 @@ export default function Experience() {
               </div>
 
               {/* Card */}
-              <div className="p-5 space-y-3 border border-border/50 bg-white/90 dark:bg-card/30 rounded-xl hover:bg-primary/5 hover:border-primary hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20 active:bg-primary/5 active:border-primary transition-all duration-300 shadow-sm dark:shadow-none">
+              <div className="professional-card p-6 md:p-7 space-y-4 rounded-xl">
                 <div className="flex flex-wrap items-start justify-between gap-2">
                   <div>
                     <div className="flex items-center gap-2 flex-wrap">

@@ -3,20 +3,44 @@
 import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, Moon, Sun, X, Home, Folder, Zap, Briefcase, Mail } from "lucide-react"
+import { Menu, Moon, Sun, X, Home, Folder, Zap, Briefcase, Mail, Award } from "lucide-react"
+import Logo from "@/components/logo"
 import { portfolioContent } from "@/lib/portfolio-content"
 import { useTheme } from "@/components/theme-provider"
 import { Button } from "@/components/ui/button"
 
 export default function Header() {
-  const { brand, navigation } = portfolioContent
+  const { navigation } = portfolioContent
   const { theme, setTheme } = useTheme()
   const pathname = usePathname()
   const [mounted, setMounted] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState("home")
 
   useEffect(() => {
     setMounted(true)
+  }, [])
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["home", "about", "projects", "skills", "experience", "certifications", "contact"]
+      const scrollPosition = window.scrollY + 100
+
+      for (const section of sections) {
+        const el = document.getElementById(section)
+        if (el) {
+          const top = el.offsetTop
+          const height = el.offsetHeight
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(section)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const toggleTheme = () => {
@@ -30,18 +54,13 @@ export default function Header() {
   const handleNavClick = (event, href) => {
     setMobileMenuOpen(false)
 
-    const isHashLink = href.startsWith("/#")
-    if (!isHashLink || pathname !== "/") {
-      return
-    }
+    const isHashLink = href.startsWith("/#") || href.startsWith("#")
+    if (!isHashLink) return
 
     event.preventDefault()
-
-    const id = href.replace("/", "")
-    const element = document.querySelector(id)
-    if (!element) {
-      return
-    }
+    const id = href.replace("/#", "#").replace("#", "")
+    const element = document.getElementById(id)
+    if (!element) return
 
     const headerOffset = 80
     const elementPosition = element.getBoundingClientRect().top
@@ -52,77 +71,84 @@ export default function Header() {
       behavior: "smooth",
     })
 
-    window.history.pushState(null, "", id)
+    window.history.pushState(null, "", `#${id}`)
   }
 
   const isActive = (href) => {
-    if (href === "/") {
-      return pathname === "/"
-    }
-
-    if (href.startsWith("/#")) {
-      return false
-    }
-
-    return pathname === href
+    const sectionId = href.replace("/#", "").replace("#", "")
+    if (!sectionId || sectionId === "/") return activeSection === "home"
+    return activeSection === sectionId
   }
 
   return (
-    <header
-      className={`sticky top-0 z-40 w-full border-b transition-all duration-300 bg-background/50 backdrop-blur-3xl`}
-    >
-      <div className="container flex h-20 items-center justify-between">
-        <div className="flex items-center gap-2">
-          {/* Mobile Menu Trigger on Left */}
+    <header className="sticky top-0 z-40 w-full border-b border-border/70 bg-background/85 backdrop-blur-xl transition-all">
+      <div className="container flex h-16 md:h-18 items-center justify-between">
+        {/* Left: Mobile trigger & Custom Logo */}
+        <div className="flex items-center gap-3">
           <Button variant="ghost" size="icon" onClick={toggleMobileMenu} aria-label="Toggle menu" className="md:hidden">
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
 
-          <Link href="/" className="flex flex-col leading-none" onClick={() => setMobileMenuOpen(false)}>
-            <span className="text-xl font-bold">
-              <span className="text-primary">{brand.logoText.replace("Dev", "")}</span>Dev
-            </span>
-            <span className="mt-1 text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
-              AI and Backend Engineer
-            </span>
+          <Link
+            href="/"
+            className="flex items-center transition-opacity hover:opacity-90 cursor-pointer"
+            onClick={(e) => {
+              setMobileMenuOpen(false)
+              const el = document.getElementById("home")
+              if (el) {
+                e.preventDefault()
+                window.scrollTo({ top: 0, behavior: "smooth" })
+                window.history.pushState(null, "", "/")
+              }
+            }}
+          >
+            <Logo size="default" />
           </Link>
         </div>
 
-        <nav className="hidden items-center gap-6 md:flex">
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-1 md:flex">
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className={`rounded-full px-3 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 ${isActive(item.href) ? "bg-primary/12 text-primary hover:bg-primary hover:text-primary-foreground" : "text-foreground/75 hover:text-primary-foreground hover:bg-primary"
-                }`}
+              className={`rounded-full px-3.5 py-1.5 text-xs md:text-sm font-semibold transition-all ${
+                isActive(item.href)
+                  ? "bg-primary/10 text-primary border border-primary/20 shadow-sm"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
               onClick={(event) => handleNavClick(event, item.href)}
             >
               {item.name}
             </Link>
           ))}
-          <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme" className="transition-all duration-300 hover:scale-105 hover:text-primary-foreground hover:bg-primary rounded-full">
-            {mounted && theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-          </Button>
+          <div className="ml-2 border-l border-border/60 pl-2">
+            <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme" className="rounded-full">
+              {mounted && theme === "dark" ? <Sun className="h-4 w-4 text-amber-400" /> : <Moon className="h-4 w-4 text-slate-700" />}
+            </Button>
+          </div>
         </nav>
 
-        <div className="flex items-center gap-2 md:hidden">
+        {/* Mobile Theme Toggle */}
+        <div className="flex items-center md:hidden">
           <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
-            {mounted && theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            {mounted && theme === "dark" ? <Sun className="h-4 w-4 text-amber-400" /> : <Moon className="h-4 w-4 text-slate-700" />}
           </Button>
         </div>
       </div>
 
+      {/* Mobile Drawer Navigation */}
       {mobileMenuOpen && (
-        <div 
-          className="fixed inset-0 top-20 z-50 bg-black/40 backdrop-blur-md md:hidden"
+        <div
+          className="fixed inset-0 top-16 z-50 bg-black/50 backdrop-blur-md md:hidden"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <div className="h-[calc(100vh-5rem)] overflow-y-auto">
-            <nav 
-              className="flex w-[75%] h-full flex-col gap-4 rounded-r-2xl border-r border-border/50 bg-white/80 dark:bg-card/80 px-4 py-6 shadow-[0_30px_80px_-50px_rgba(0,0,0,0.5)] backdrop-blur-xl"
+          <div className="h-[calc(100vh-4rem)] overflow-y-auto">
+            <nav
+              className="flex min-h-full w-[82%] max-w-xs flex-col gap-2 rounded-r-2xl border-r border-border/70 bg-card/98 px-5 py-6 shadow-2xl backdrop-blur-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="mb-2 px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">
+              <div className="mb-2 px-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Navigation
               </div>
               {navigation.map((item) => {
@@ -131,18 +157,22 @@ export default function Header() {
                   Projects: Folder,
                   Skills: Zap,
                   Experience: Briefcase,
+                  Certifications: Award,
                   Contact: Mail
-                }[item.name] || Folder;
-                
+                }[item.name] || Folder
+
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`w-full rounded-xl px-4 py-3 text-base font-medium transition-all duration-300 flex items-center gap-3 ${isActive(item.href) ? "bg-primary/15 text-primary" : "text-foreground/80 hover:bg-white/5 hover:text-primary"
-                      }`}
+                    className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all ${
+                      isActive(item.href)
+                        ? "bg-primary/15 text-primary border border-primary/20"
+                        : "text-foreground/80 hover:bg-muted"
+                    }`}
                     onClick={(event) => handleNavClick(event, item.href)}
                   >
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-4 w-4" />
                     <span>{item.name}</span>
                   </Link>
                 )

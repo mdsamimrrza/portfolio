@@ -1,80 +1,77 @@
-import { Brain, Globe, Server, Database, Terminal, Smartphone, PenTool } from "lucide-react"
+import { Brain, Code2, Database, GitBranch, Server, ShieldCheck } from "lucide-react"
 import Reveal from "./reveal"
 
-const CATEGORIES = [
+const CAPABILITIES = [
   {
-    name: "AI & Intelligent Systems",
-    Icon: Brain,
-    color: "text-violet-500",
-    bg: "bg-violet-500/10",
-    skills: ["AI Model Integration", "Query Agents", "Article Retrieval", "AI Alignment", "Prompt Engineering"],
-  },
-  {
-    name: "Frontend",
-    Icon: Globe,
-    color: "text-blue-500",
-    bg: "bg-blue-500/10",
-    skills: ["React", "JavaScript", "HTML5", "CSS3", "Redux", "Material UI", "Bootstrap"],
-  },
-  {
-    name: "Backend",
+    name: "Backend Engineering",
     Icon: Server,
-    color: "text-emerald-500",
-    bg: "bg-emerald-500/10",
-    skills: ["Java", "Spring Boot", "Node.js", "Express.js", "RESTful APIs", "Spring Framework"],
+    summary: "REST APIs, service logic, authentication, data flow, and maintainable server-side structure.",
+    skills: ["Java", "Spring Boot", "Node.js", "Express", "REST APIs", "JWT"],
   },
   {
-    name: "Database",
+    name: "Frontend Product Work",
+    Icon: Code2,
+    summary: "Responsive interfaces with component structure, state management, and clean user flows.",
+    skills: ["React", "TypeScript", "JavaScript", "Redux Toolkit", "Tailwind CSS", "Vite"],
+  },
+  {
+    name: "Data & Persistence",
     Icon: Database,
-    color: "text-orange-500",
-    bg: "bg-orange-500/10",
-    skills: ["MySQL", "MongoDB", "PostgreSQL", "Firebase"],
+    summary: "Schema design, querying, and application storage patterns across SQL and document databases.",
+    skills: ["MongoDB", "MySQL", "PostgreSQL", "Mongoose", "Firebase"],
   },
   {
-    name: "DevOps & Tools",
-    Icon: Terminal,
-    color: "text-pink-500",
-    bg: "bg-pink-500/10",
-    skills: ["Git", "GitHub", "Docker", "VS Code", "IntelliJ IDEA", "Vite", "Webpack"],
+    name: "AI & Search Systems",
+    Icon: Brain,
+    summary: "Practical AI retrieval workflows, query agents, semantic search, and model integration.",
+    skills: ["AI Integration", "Query Agents", "Article Retrieval", "Google Gemini", "Prompt Safety"],
   },
   {
-    name: "Mobile & Design",
-    Icon: Smartphone,
-    color: "text-cyan-500",
-    bg: "bg-cyan-500/10",
-    skills: ["React Native", "Responsive Design", "Figma", "UI/UX Principles"],
+    name: "Engineering Workflow",
+    Icon: GitBranch,
+    summary: "Version control, containerization, API testing, and disciplined project delivery habits.",
+    skills: ["Git", "GitHub", "Docker", "Postman", "pnpm", "CI Awareness"],
+  },
+  {
+    name: "Production Mindset",
+    Icon: ShieldCheck,
+    summary: "Reliability, readable code, secure defaults, collaboration, and maintainable implementation choices.",
+    skills: ["Clean Code", "RBAC", "Validation", "Documentation", "Collaboration"],
   },
 ]
 
 export default function Skills() {
   return (
-    <section id="skills" className="container py-16 scroll-mt-2 space-y-10">
-
+    <section id="skills" className="container scroll-mt-2 py-20">
       <Reveal>
-        <div className="text-center space-y-3">
-          <p className="section-heading-kicker">Expertise</p>
-          <h2 className="text-3xl md:text-4xl font-bold">Skills & Technologies</h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            From AI systems to full-stack applications — a versatile, industry-ready tech stack.
+        <div className="mx-auto mb-10 max-w-3xl text-center">
+          <p className="section-heading-kicker">Capabilities</p>
+          <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Engineering Strengths</h2>
+          <p className="mt-3 text-lg leading-8 text-muted-foreground">
+            A practical stack for building reliable backend services, full-stack products, and AI-assisted workflows.
           </p>
         </div>
       </Reveal>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {CATEGORIES.map(({ name, Icon, color, bg, skills }, i) => (
-          <Reveal key={name} delay={i * 100}>
-            <div className="p-5 space-y-4 group border border-border/50 bg-white/90 dark:bg-card/30 rounded-xl hover:bg-primary/5 hover:border-primary hover:-translate-y-1 hover:shadow-lg hover:shadow-primary/20 active:bg-primary/5 active:border-primary transition-all duration-300 h-full shadow-sm dark:shadow-none">
-              <div className="flex items-center gap-3">
-                <div className={`p-2 rounded-lg ${bg}`}>
-                  <Icon className={`h-5 w-5 ${color}`} />
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {CAPABILITIES.map(({ name, Icon, summary, skills }, i) => (
+          <Reveal key={name} delay={i * 90}>
+            <div className="professional-card h-full rounded-xl p-6">
+              <div className="mb-5 flex items-start gap-4">
+                <div className="rounded-lg border border-primary/20 bg-primary/10 p-2.5 text-primary">
+                  <Icon className="h-5 w-5" />
                 </div>
-                <h3 className="font-semibold text-sm">{name}</h3>
+                <div>
+                  <h3 className="font-bold tracking-tight">{name}</h3>
+                  <p className="mt-1 text-sm leading-6 text-muted-foreground">{summary}</p>
+                </div>
               </div>
               <div className="flex flex-wrap gap-2">
-                {skills.map(skill => (
-                  <span key={skill}
-                    className="px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground text-xs border border-border/60
-                      hover:bg-primary/10 hover:text-primary hover:border-primary/25 transition-colors duration-200 cursor-default">
+                {skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="rounded-full border border-border/70 bg-background/65 px-2.5 py-1 text-xs font-semibold text-foreground/85"
+                  >
                     {skill}
                   </span>
                 ))}

@@ -75,8 +75,8 @@ export default function Contact() {
       {/* Toast */}
       {client && toast && (
         <div className={`max-w-xl mx-auto flex items-center gap-3 p-4 rounded-xl border animate-fade-in ${toast.type === "success"
-            ? "bg-green-500/10 border-green-500/30 text-green-700 dark:text-green-300"
-            : "bg-red-500/10 border-red-500/30 text-red-700 dark:text-red-300"
+          ? "bg-green-500/10 border-green-500/30 text-green-700 dark:text-green-300"
+          : "bg-red-500/10 border-red-500/30 text-red-700 dark:text-red-300"
           }`}>
           {toast.type === "success"
             ? <CheckCircle className="h-5 w-5 shrink-0" />

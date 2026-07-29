@@ -25,7 +25,7 @@ const PROJECTS = [
     desc: "A personal knowledge management platform designed to store, search, and retrieve articles and notes efficiently. Built to solve the problem of information overload for developers and researchers.",
     tags: ["React", "JavaScript", "Firebase", "REST APIs"],
     github: "https://github.com/mdsamimrrza/Knowledge-Vault",
-    demo: "https://knowledge-vault.up.railway.app/",
+    demo: "https://knowledge-vault-silk.vercel.app/",
     image: "/knowledge.png",
   },
   {

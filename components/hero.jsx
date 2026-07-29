@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Mail, ExternalLink } from "lucide-react"
 
-const ROLES = ["AI Developer", "Full Stack Engineer", "Java Developer", "React Enthusiast"]
+const ROLES = ["Associate Software Engineer", "Spring Boot Developer", "Full Stack Builder", "React & Vue Developer", ".NET Developer", "SQL Expert"]
 
 const GithubIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="h-4 w-4">
@@ -107,8 +107,8 @@ export default function Hero() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-2">Hello, I'm</p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1]">
                 <span className="text-primary">Md Samim</span>
-                <br />
-                <span className="text-foreground">Reza</span>
+                
+                <span className="text-foreground"> Reza</span>
               </h1>
             </div>
 
@@ -123,10 +123,10 @@ export default function Hero() {
 
             {/* Bio */}
             <p className="text-muted-foreground text-base md:text-lg leading-relaxed max-w-lg">
-              <span className="text-foreground font-medium">Intern Superintelligent Evangelist</span> at{" "}
-              <span className="text-primary font-medium">Chiac ASI</span> — building AI-driven query systems.
-              Computer Science graduate from{" "}
-              <span className="text-foreground font-medium">SIT, Bangalore</span>.
+              I'm <span className="text-foreground font-medium">Md Samim Reza</span>, an{" "}
+              <span className="text-foreground font-medium">Associate Software Engineer</span> at{" "}
+              <span className="text-primary font-medium">Canada Life</span>.
+              Building production software with expertise in Spring Boot, .NET, React, Vue, and SQL.
             </p>
 
             {/* CTA buttons */}
