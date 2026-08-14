@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Mail, ExternalLink } from "lucide-react"
 
-const ROLES = ["Associate Software Engineer", "Spring Boot Developer", "Full Stack Builder", "React & Vue Developer", ".NET Developer", "SQL Expert"]
+const ROLES = ["Associate Software Engineer", "Spring Boot Developer", "Full Stack Builder", "React Developer", ".NET Developer", "SQL Expert"]
 
 const GithubIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="h-4 w-4">
@@ -32,16 +32,16 @@ const DownloadIcon = () => (
 )
 
 const SOCIAL = [
-  { href: "https://github.com/mdsamimrrza",  label: "GitHub",   Icon: GithubIcon },
+  { href: "https://github.com/mdsamimrrza", label: "GitHub", Icon: GithubIcon },
   { href: "https://linkedin.com/in/samimrrza", label: "LinkedIn", Icon: LinkedinIcon },
-  { href: "https://leetcode.com/samimreza",  label: "LeetCode", Icon: LeetcodeIcon },
-  { href: "mailto:samimrrza1@gmail.com",     label: "Email",    Icon: Mail },
+  { href: "https://leetcode.com/samimreza", label: "LeetCode", Icon: LeetcodeIcon },
+  { href: "mailto:samimrrza1@gmail.com", label: "Email", Icon: Mail },
 ]
 
 export default function Hero() {
   const [displayText, setDisplayText] = useState("")
-  const [idx, setIdx]               = useState(0)
-  const [deleting, setDeleting]     = useState(false)
+  const [idx, setIdx] = useState(0)
+  const [deleting, setDeleting] = useState(false)
   const cursorRef = useRef(null)
 
   /* Blinking cursor */
@@ -107,7 +107,7 @@ export default function Hero() {
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground mb-2">Hello, I'm</p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1]">
                 <span className="text-primary">Md Samim</span>
-                
+
                 <span className="text-foreground"> Reza</span>
               </h1>
             </div>
@@ -151,12 +151,17 @@ export default function Hero() {
             {/* Social row */}
             <div className="flex items-center gap-2 pt-1">
               {SOCIAL.map(({ href, label, Icon }) => (
-                <a key={label} href={href}
-                  target={href.startsWith("http") ? "_blank" : undefined}
-                  rel="noopener noreferrer" aria-label={label}
-                  className="p-2 rounded-full border border-border bg-card/60 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all duration-200">
-                  <Icon className="h-4 w-4" />
-                </a>
+                <div key={label} className="relative group">
+                  <a href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel="noopener noreferrer" aria-label={label} title={label}
+                    className="p-2 rounded-full border border-border bg-card/60 hover:border-primary hover:text-primary hover:bg-primary/5 transition-all duration-200 block">
+                    <Icon className="h-4 w-4" />
+                  </a>
+                  <span className="pointer-events-none absolute -top-9 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-200 px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-popover text-popover-foreground border border-border shadow-md whitespace-nowrap z-20">
+                    {label}
+                  </span>
+                </div>
               ))}
               <span className="text-xs text-muted-foreground ml-1">Find me online</span>
             </div>
@@ -172,7 +177,7 @@ export default function Hero() {
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl shadow-primary/15 animate-float">
                 <Image
                   src="/profile.jpg"
-                  alt="Md Samim Reza — Full Stack Developer & AI Developer"
+                  alt="Md Samim Reza — Associate Software Engineer"
                   fill className="object-cover" priority
                 />
               </div>

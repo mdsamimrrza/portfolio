@@ -69,10 +69,15 @@ export default function Footer() {
             </p>
             <div className="flex gap-3 pt-1">
               {SOCIAL.map(({ label, href, svg }) => (
-                <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-                  className="text-muted-foreground hover:text-primary transition-colors duration-200">
-                  {svg}
-                </a>
+                <div key={label} className="relative group">
+                  <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label} title={label}
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200 block">
+                    {svg}
+                  </a>
+                  <span className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-200 px-2.5 py-0.5 rounded-md text-[11px] font-medium bg-popover text-popover-foreground border border-border shadow-md whitespace-nowrap z-20">
+                    {label}
+                  </span>
+                </div>
               ))}
             </div>
           </div>

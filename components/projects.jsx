@@ -34,7 +34,7 @@ const PROJECTS = [
     desc: "A structured knowledge base application providing query-based search and intelligent article retrieval. Inspired by real-world work on AI query systems at Chiac ASI.",
     tags: ["JavaScript", "Node.js", "Express.js", "MongoDB"],
     github: "https://github.com/mdsamimrrza/knowledgeBase",
-    demo: "https://knowledgebase-wdt5.onrender.com/",
+    demo: "https://knowledge-bases.vercel.app/search",
     image: "/query.png",
   },
   {
